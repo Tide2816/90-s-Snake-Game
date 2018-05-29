@@ -1,0 +1,22 @@
+/**************************************************
+	GAME
+**************************************************/
+section.game {
+	padding: 40px 0px;
+}
+
+.SplashScreen, 
+.FinishScreen {
+	margin: 0 auto;
+	text-align:center;
+	width: 300px;
+	height: 300px;
+	border: 2px solid #fff;
+	background-color:#0056a0;
+}
+
+.FinishScreen h1,
+.SplashScreen h1 {
+	color: #fff200;
+	font-family: 'Oswald', sans-serif;
+	font-size: 36px;
