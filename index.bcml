@@ -10,18 +10,11 @@
   <style>
     button { width: 100%; margin: 0.3rem 0; border: 0; background-color: #42A5F5; color: white; font-size: 1rem; padding: 0.6rem 1.3rem; border-radius: 8px; transition: all 0.2s; cursor: pointer; outline: 0; }
     button:hover { background-color: #1565C0; }
-  </head>
+  </style>
+</head>
 <body>
-    <bizapp-root>
+   <bizapp-root>
     <script>
-<meta charset="utf-8" />
-<title>Play Snake Game</title>
-<style type="text/css">
-body {text-align:center;}
-canvas { border:5px dotted #ccc; }
-h1 { font-size:50px; text-align: center; margin: 0; padding-bottom: 25px;}
-</style>
-<script type="text/javascript">
 function play_game() 
 {
 var level = 160; // Game level, by decreasing will speed up
