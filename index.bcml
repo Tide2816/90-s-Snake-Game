@@ -13,13 +13,6 @@
   </head>
 <body>
     <bizapp-root>
-        <div class="content">
-            <img src="./img/logo.png" class="logo"/>
-            <div id="infopane" class="infopane">Please login with your Trivecoin account<br/><button onclick="login()">Login</button></div>
-            <div class="location-title">Available location</div>
-            <div id="location-list"></div>
-        </div>
-    </bizapp-root>
     <script>
 <meta charset="utf-8" />
 <title>Play Snake Game</title>
@@ -287,5 +280,6 @@ function GoDownDirection()
 <div id="msg"></div>
 <canvas id="playArea" width="450" height="300">Sorry your browser does not support HTML5</canvas>
   </script>
+ </bizapp-root>
 </body>
 </html>
