@@ -14,13 +14,7 @@
 </head>
 <body>
   <bizapp-root>
-    <button onclick="login()">Login</button>
-    <button onclick="pay()">Pay</button>
-    <pre id="result"></pre>
     <script>
-</html>
-<html lang="en">
-<head>
 <meta charset="utf-8" />
 <title>Play Snake Game</title>
 <style type="text/css">
