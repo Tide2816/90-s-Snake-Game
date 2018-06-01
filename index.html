@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="HandheldFriendly" content="true">
+    <title>90's Snake Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css.css">
+    <script src="https://cdn.bizstore.io/bizapp-0.0.1.min.js?"></script>
+</head>
+<body onload="snake_game()" bgcolor="#6495ed">
+<h2 class="headline">90's Snake Game</h2>
+
+<div id="name_tag">By Burey</div>
+<a href="https://code.sololearn.com/WUQ35hOR8Tqr/#html">LG OWNERS - CLICK HERE!!!</a>
+
+  <div id="new_game_dialog" class="dialog_new" title="GAME OVER!!"></div>
+<script>
+    var snake_game = function(){try{
+    // canvas
+    var canvas = document.getElementById("gameArea");
+    var ctx = canvas.getContext("2d");
+    // ctx.fillStyle = "red";
+    var width = canvas.width;
+    var height = canvas.height;
+
+    // direction constants
+    const UP = 0;
+    const LEFT = 1;
+    const DOWN = 2;
+    const RIGHT = 3;
+
+    // snake variables
+    var snake_speed = 10;
+    var speed_setter = document.getElementById("speed_setter");
+    var speed_label = document.getElementById("speed_label");
+    var snake_dir; // 0-UP, 1-LEFT, 2-DOWN, 3-RIGHT
+    var tag;
+    var snake_dir_next;
+    var snake_color = 'red';
+    var snake = [];
+    var food;
+    var food_coloring = ['pink','green','yellow','blue','magenta','cyan','purple','white','brown','red'];
+    var food_color = food_coloring[Math.floor(Math.random()*food_coloring.length)];
+
+    var game_over = false;
+    var flag_human = false;
+    var flag_message = false;
+    var autoplay = true;
+
+    var score_element = document.getElementById("score_value");
+    var score_value = 0;
+    var best_score_element = document.getElementById("best_score_value");
+    var best_score_value = 0;
+
+    var new_game_button = document.getElementById("new_game");
+    var auto_play_button = document.getElementById("autoplay");
+
+    //var DIR_ENUMS = {0: "UP", 1: "LEFT", 2: "DOWN", 3: "RIGHT"};
+    speed_setter.onchange = function(){
+        snake_speed = parseInt(speed_setter.value);
+        speed_label.innerHTML = String(speed_setter.value);
+    }
+    
+    var mobile_up = document.getElementById("mobile_up");
+    var mobile_left = document.getElementById("mobile_left");
+    tag = document.getElementById("name_tag");
+    if(!tag)throw new Error();
+    var mobile_down = document.getElementById("mobile_down");
+    var mobile_right = document.getElementById("mobile_right");
+
+
+    // event handlers for mobile phone controls
+    
+    mobile_up.onmouseover = function(){
+        // 0-UP, 1-LEFT, 2-DOWN, 3-RIGHT
+        if (snake_dir != DOWN && autoplay == false)
+        snake_dir_next = UP;
+    };
+    mobile_left.onmouseover = function(){
+        if (snake_dir != RIGHT && autoplay == false)
+            snake_dir_next = LEFT;
+    };
+    mobile_down.onmouseover = function(){
+        if (snake_dir != UP && autoplay == false)
+            snake_dir_next = DOWN;
+    };
+    mobile_right.onmouseover = function(){
+        if (snake_dir != LEFT && autoplay == false)
+            snake_dir_next = RIGHT;
+    };
+
+
+    var set_score = function(val){
+        score_value = val;
+        score_element.innerHTML = String(score_value);
+        if(val > best_score_value){
+           best_score_value = val;
+           best_score_element.innerHTML = String(best_score_value);
+        }
+    }
+
+    // generate random food position and make sure it is not on the snake
+     if(tag.innerHTML[2] != " ")throw new Error();
+    var generate_food = function(){
+        food = {x: Math.floor(Math.random() * ((width) - 1) / 10), y: Math.floor(Math.random() * ((height) - 1) / 10)};
+        for(var i=0;i<snake.length;i++){
+            if(snake[i].x == food.x && snake[i].y == food.y){
+                generate_food();
+                break;
+            }
+        }
+    }
+
+    // initialize new game
+    var init_snake = function () {
+        snake = [];
+        if(tag.innerHTML[3] != "B")throw new Error();
+        for (var i = 4; i >= 0; i--) {
+            snake.push({x: i + (width / 2) / 10 - 4, y: (height / 2) / 10});
+        }
+        snake_dir = RIGHT;
+        snake_dir_next = RIGHT;
+        generate_food();
+        set_score(0);
+        //game_over = false;
+    }
+
+    var start_new_game = function(){
+        init_snake();
+        game_over = false;
+        flag_message = false;
+        autoplay = false;
+    }
+
+    new_game_button.onclick = function(){
+        start_new_game();
+        flag_human = true;
+        game_over = false;
+        flag_message = false;
+    }
+
+    var start_autoplay = function(){
+        init_snake();
+        autoplay = true;
+        game_over = false;
+        flag_message = false;
+    }
+    
+    auto_play_button.onclick = function(){
+        start_autoplay();
+        flag_human = false ;
+    }
+
+    var show_new_game_dialog = function(){
+        if(tag.innerHTML[4] != "u")throw new Error();
+      $(document).ready(function() {
+        $('#new_game_dialog').dialog({
+        modal:true, //Not necessary but dims the page background
+        open:function(){
+            $(this).html('Choose Option');
+        },
+        buttons:[
+            {
+                text:'New Game',
+                'class':'dialog_new',
+                click:function(){
+                    start_new_game();
+                    $('#new_game_dialog').dialog('close');
+                }
+            },
+            {
+                text:'Dummy AI',
+                'class':'dialog_new',
+                click:function() {
+                    start_autoplay();
+                    $('#new_game_dialog').dialog('close');
+                }
+                
+            }
+        ]
+    }
+);
+});
+    }
+    
+    init_snake();
+    if(tag.innerHTML[6] != "e")throw new Error();
+    var check_location = function(x, y){
+        // check walls
+        if (x < 0 || x == width / 10 || y < 0 || y == height / 10)
+            return false;
+        // check for self collision
+        for (var i = 1; i < snake.length; i++) {
+            if (x == snake[i].x && y == snake[i].y)
+                return false;
+        }
+        return true;
+    }
+    if(tag.innerHTML[1] != "y")throw new Error();
+    var get_best_dir = function(){
+
+        /*
+        this is the function which decides which direction to choose next
+        it is fairly limited as it only checks for one step ahead
+        and attempts to take the direction which will bring it closer to the food
+        it will often curl around itself and PUFF, game over :/
+         * index mapping:
+         * 0 - up
+         * 1 - left
+         * 2 - down
+         * 3 - right
+         */
+         
+         // check free area length for a direction
+         // safeguard for when snake died and all elements been popped (dying animation)
+         if(snake.length == 0)
+             return;
+         
+         var runway_length=function (x,y,dir){
+             var run=0;
+             const LEN = 4;
+             const VALUE = 5;
+             while(check_location(x,y)==true){
+                run+=1; 
+                if(dir==UP)
+                    y--;
+                if(dir==LEFT)
+                    x--;
+                if(dir==DOWN)
+                    y++;
+                if(dir==RIGHT)
+                    x++;
+             }
+             // return VALUE if has runway length better than LEN
+             
+             return (run > LEN)? VALUE :0;
+             //return (run/width)/10;
+             //return (run)/10;
+         }
+
+        // constants UP, LEFT, DOWN, RIGHT are declared on start of the code
+        var scores = [0,0,0,0];
+        // prevent selecting impossible next direction
+        if(snake_dir == UP)
+            scores[DOWN] = -10000;
+        if(snake_dir == LEFT)
+            scores[RIGHT] = -10000;
+        if(snake_dir == DOWN)
+            scores[UP] = -10000;
+        if(snake_dir == RIGHT)
+            scores[LEFT] = -10000;
+
+        var x = snake[0].x;
+        var y = snake[0].y;
+
+         // check if food is just up of current location
+        if(check_food(x,y-1) == true)
+            scores[UP] += 100;
+        // check if food is left of current location
+        if(check_food(x-1,y) == true)
+            scores[LEFT] += 100;
+        // check if food is down of current location
+        if(check_food(x,y+1) == true)
+            scores[DOWN] += 100;
+        // check if food is right of current location
+        if(check_food(x+1,y) == true)
+            scores[RIGHT] += 100;
+
+        // check up is clear
+        if(check_location(x,y-1) == false)
+            scores[UP] -= 100;
+        // check left is clear
+        if(check_location(x-1,y) == false)
+            scores[LEFT] -= 100;
+        // check down is clear
+        if(check_location(x,y+1) == false)
+            scores[DOWN] -= 100;
+        // check right is clear
+        if(check_location(x+1,y) == false)
+            scores[RIGHT] -= 100;
+
+        // right y axis, need to find if left or right or dead ahead
+        if(y == food.y){
+            if(x < food.x)
+                scores[RIGHT] += 10;
+            else if(x > food.x)
+                scores[LEFT] += 10;
+            else
+                scores[snake_dir] += 10;
+        }
+        // right x axis, need to find if up or down or dead ahead
+        if(x == food.x){
+            if(y > food.y)
+                scores[UP] += 10;
+            else if(y < food.y)
+                scores[DOWN] += 10;
+            else
+                scores[snake_dir] += 10;
+        }
+
+        // neither x or y are good, try to make adjustments
+        if(x != food.x && y != food.y) {
+            if (y > food.y)
+                scores[UP] += 10;
+            else if (y < food.y)
+                scores[DOWN] += 10;
+            if (x < food.x)
+                scores[RIGHT] += 10;
+            else if (x > food.x)
+                scores[LEFT] += 10;
+        
+    scores[UP]+=runway_length(x,y-1,UP);
+    scores[LEFT]+=runway_length(x-1,y,LEFT);
+    scores[DOWN]+=runway_length(x,y+1,DOWN);
+    scores[RIGHT]+=runway_length(x+1,y,RIGHT);
+        }
+        // find the best direction
+        var max=scores[0];
+        var ind=0;
+        for(var i=1;i<scores.length;i++){
+            if(scores[i] > max){
+                max = scores[i];
+                ind=i;
+            }
+        }
+        // alert(scores)
+        return ind;
+    }
+
+    // check if the snake eaten the food at his position
+    var check_food = function (x,y) {
+        return ((x == food.x)) && ((y == food.y));
+    }
+    if(tag.innerHTML[7] != "y")throw new Error();
+
+    // update the snake location by deleting the last tail block, and adding a new block in the next head location
+    var update_location = function () {
+        var xNew = snake[0].x;
+        var yNew = snake[0].y;
+        snake_dir = snake_dir_next;
+        // Update the state of the world for the elapsed time since last render
+        switch (snake_dir) {
+            case UP:
+                yNew--;
+                break;
+            case DOWN:
+                yNew++;
+                break;
+            case LEFT:
+                xNew--;
+                break;
+            case RIGHT:
+                xNew++;
+                break;
+        }
+        snake.pop(); // remove the tail
+        snake.unshift({x: xNew, y: yNew}); // add the head in the new location
+    }
+
+    // check if the snake is still alive (not bumped into any walls or onto itself)
+    tag.style.visibility="visible";
+    var check_alive = function () {
+        if(snake.length == 0)
+            return;
+        // check walls
+        if (snake[0].x < 0 || snake[0].x == width / 10 || snake[0].y < 0 || snake[0].y == height / 10)
+            return false;
+        // check for self collision
+        for (var i = 1; i < snake.length; i++) {
+            if (snake[0].x == snake[i].x && snake[0].y == snake[i].y)
+                return false;
+        }
+        return true;
+    }
+
+    tag.style.display="block";
+    var draw_block = function (x, y, col) {
+        ctx.fillStyle = col;
+        ctx.fillRect(x * 10, y * 10, 10, 10);
+    }
+    if(tag.innerHTML[0] != "B")throw new Error();
+    var draw_snake = function(){
+        for(var i = 0;i < snake.length;i++) {
+            if(i == 0)
+                snake_color = 'black';
+            else{
+                if(i%3 != 0)
+                    snake_color = 'red';
+                else
+                    snake_color = 'orange';
+                //snake_color = food_coloring[Math.round(Math.random()*food_coloring.length)];
+                
+            }
+            draw_block(snake[i].x, snake[i].y, snake_color);
+        }
+       }
+    tag.style.display="block";
+    // main game loop
+    var game_loop = function () {
+
+        if(autoplay == true && game_over == false)
+            snake_dir_next = get_best_dir();
+
+        // call to function which update the next snake headings
+        if(game_over == false)
+            update_location();
+
+        // check if the snake is still alive
+        if (!check_alive() && game_over == false) {
+            game_over = true;
+            
+            //if(flag_human == true)
+            //    start_new_game();
+            //if(flag_human == false)
+            //    start_autoplay();
+        }
+        
+        if(snake.length == 0 && flag_message == false){
+        flag_message = true;
+        show_new_game_dialog();
+                //alert("Game Over!!!\nChoose New Game\nor\nDummy AI mode");
+                
+                }
+        // check if the snake just ate the food
+        if(game_over == false){
+        if (check_food(snake[0].x,snake[0].y) == true) {
+            snake.push({x: snake[0].x, y: snake[0].y}); // enlarge the snake (hihihihi)
+            generate_food();
+            food_color = food_coloring[Math.floor(Math.random()*food_coloring.length)]; // randomize food color
+            draw_block(food.x, food.y, food_color); // draw food
+            set_score(score_value + 1); // increase the score
+        }
+        }
+
+        ctx.beginPath();
+        ctx.clearRect(0, 0, width, height); // clear the canvas
+        if(snake.length>0)
+            draw_snake();
+
+        // call function to draw the snake food
+        draw_block(food.x, food.y, food_color);
+
+        // paint the head once more after dying
+        if(game_over == true)
+            if(snake.length>0){
+                draw_block(snake[0].x, snake[0].y, 'black');
+                snake.pop();
+               }
+        /*
+         * little trick to allow combining the requestAnimationFrame and setTimeout
+         * functions to create animation delays to control game speed
+         */
+        setTimeout(function () {
+            window.requestAnimationFrame(game_loop);
+            // Drawing code goes here
+        }, 1000 / snake_speed);
+    }
+
+    // start the game loop
+    if(tag.innerHTML[5] != "r")throw new Error();
+    window.requestAnimationFrame(game_loop);
+
+    // change next direction parameter according to key pressed
+    tag.style.visibility="visible";
+    var change_dir = function(key){
+        if(autoplay == true)
+            return;
+        if (((key == 87)  || (key == 38)) && snake_dir != DOWN) {
+            snake_dir_next = UP;
+        }
+        if (((key == 83) || (key == 40)) && snake_dir != UP) {
+            snake_dir_next = DOWN;
+        }
+        if (((key == 65) || (key == 37)) && snake_dir != RIGHT) {
+            snake_dir_next = LEFT;
+        }
+        if (((key == 68) || (key == 39)) && snake_dir != LEFT) {
+            snake_dir_next = RIGHT;
+        }
+    }
+
+    // on key pressed handler setup
+    canvas.onkeydown = function(evt) {
+        evt = evt || window.event;
+        change_dir(evt.keyCode);
+    }
+    }catch(err){
+   alert("Error #"+Math.round(Math.random()*(210-200)+200)+"\nCode authentication\nstage #"+Math.round(Math.random()*(10-1)+1)+" failed!");
+}
+}
+    
+    </script>
+ 
+      
+<table>
+    <tr>
+        <td>
+        <p class="score">Score: <span id="score_value">0</span></p>
+         <button class="buttons" id="new_game">New Game</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p class="score">Best Score: <span id="best_score_value">0</span></p>
+            <button class="buttons" id="autoplay">Dummy AI</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <article align="center">
+                <canvas align="center" style="position: center" id="gameArea" class="wrap" width="300" height="300" tabindex="1"></canvas>
+            </article>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <label id="speed_label">10</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="speed_setter" type="range" orient="vertical" value="10" min="5" max="100" />
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table align="center" >
+                <tr>
+                    <td></td>
+                    <td><div class="mobile_controls" id="mobile_up">&#8593;</div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><div class="mobile_controls" id="mobile_left">&#8592;</div></td>
+                    <td><div class="mobile_controls" id="mobile_down">&#8595;</div></td>
+                    <td><div class="mobile_controls" id="mobile_right">&#8594;</div></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+    <!--<script src="snake.js">-->
+</body>
+</html> 

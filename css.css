@@ -1,0 +1,187 @@
+/*@import url("https://fonts.googleapis.com/css?family=VT323");*/
+
+html, body {
+     /*font-size: 40px;*/
+     margin:0; 
+     padding:0; 
+     width:100%; 
+     height:100%; 
+}
+.headline{
+    text-align:center;
+    font-size:15px;
+    margin-top:5px;
+    margin-bottom:0px;
+    /*font-family: "Times New Roman", Georgia, Serif;*/
+    /*font-family: "VT323";*/
+    font-family: 'Press Start 2P', cursive;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: 5px 2px 4px grey;
+}
+.score{
+    display: inline-block;
+    width: 150px;
+    font-size: 10px;
+    color: #000000;
+    text-align: left;
+    margin-top:0px;
+    margin-bottom:0px;
+    /*font-family: "Times New Roman", Georgia, Serif;*/
+    /*font-family: "VT323";*/
+    font-family: 'Press Start 2P', cursive;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: 5px 2px 4px grey;
+}
+.thank_you{
+     /*display: inline-block;*/
+    font-size: 12px;
+    color:red;
+    text-align: center;
+    margin-top:0px;
+    margin-bottom:0px;
+    /*font-family: "Times New Roman", Georgia, Serif;*/
+    /*font-family: "VT323";*/
+    font-family: 'Press Start 2P', cursive;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: 3px 2px 2px yellow;
+}
+#speed_label{
+   font-size:10px;
+   font-family: 'Press Start 2P', cursive;
+   font-weight: normal;
+   font-style: normal;
+   text-align:left;
+   text-shadow: 5px 2px 4px grey;
+}
+.buttons{
+    background-color:pink;
+    max-width:300px;
+    font-size:12px;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: 5px 2px 4px grey;
+}
+.wrap{
+    margin-left: auto;
+    margin-right: auto;
+}
+canvas{
+    border-style: solid;
+    border-width: 10px;
+    border-color: #000000;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+canvas:focus {
+    outline: none;
+}
+#tbl_arrows{
+   margin-top:-5px;
+   margin-bottom:10px;
+}
+.mobile_controls {
+    width: 50px;
+    height: 50px;
+    border-style:solid;
+    border-width: 5px;
+    border-color: black;
+    background-color:green;
+    font-size: 270%;
+    font-position: center;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    text-align: center;
+    font-weight: bold;
+    margin-top:0px;
+    margin-bottom:0px;
+
+    /*font-family: 'Press Start 2P';*/
+}
+.mobile_controls:active{
+    background: #f8f8f8;
+}
+input[type=range][orient=vertical]
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 280px;
+    padding: 0 5px;
+}
+.dialog_new{
+   color:orange;
+   font-size:20px;
+   font-family: 'Press Start 2P', cursive;
+   text-shadow: 5px 2px 4px grey;
+}
+#name_tag{
+    text-align:center;
+    font-size:15px;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 5px 2px 4px grey;
+}
+#lg_notice{
+    margin-left:15px;
+    text-align:center;
+    font-size:11px;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 5px 2px 4px grey;
+}
+#submit_score_dialog{
+    margin-left:15px;
+    text-align:center;
+    font-size:11px;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 5px 2px 4px grey;
+}
+#tbl_best_scores_container{
+   height:100px;
+   width:100%;
+   overflow-y:scroll;
+   display:block;
+}
+.score_pos{
+    font-size:12px;
+    color:blue;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 5px 2px 4px grey;
+}
+.score_name{
+    font-size:9px;
+    color:red;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 5px 2px 4px grey;
+}
+.score_value{
+    font-size:9px;
+    color:green;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 5px 2px 4px grey;
+}
+.score_time{
+    font-size:7px;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 5px 2px 4px grey;
+}
+#lbl_best_score_name_error{
+    color:red;
+    text-shadow: 5px 2px 4px grey;
+}
+.ui-dialog .ui-dialog-buttonpane button.ui-button {
+/* to change all of the buttons in a dialog */
+    color:black;
+    background:pink;
+    width:120px;
+    font-size:12px;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: 5px 2px 4px grey;
+}
