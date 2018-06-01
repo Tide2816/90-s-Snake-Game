@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="HandheldFriendly" content="true">
+    <title>TriveAsia</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css.css">
+    <script src="https://cdn.bizstore.io/bizapp-0.0.1.min.js?"></script>
+    <title>Snake.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    
+    <!--READ THIS IF YOU HAVE LG DEVICE!!!
+    
+    an issue with the SoloLearn application
+    prevents complete download of the
+    javascript file.
+    this bug had been reported to the
+    SoloLearn support and should
+    be fixed hopefully on the next update
+    of the SoloLearn app.
+    in the meanwhile, you can run the code
+    on http://www.sololearn.com on the
+    code playground -->
+    
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+     
+    
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/press-start-2p" type="text/css"/>
+    
+    <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+</head>
+<body onload="snake_game()" bgcolor="#6495ed">
+<h2 class="headline">90's Snake Game</h2>
+
+<div id="name_tag">By Burey</div>
+<a href="https://code.sololearn.com/WUQ35hOR8Tqr/#html">LG OWNERS - CLICK HERE!!!</a>
+
+  <div id="new_game_dialog" class="dialog_new" title="GAME OVER!!"></div>
+      
+<table>
+    <tr>
+        <td>
+        <p class="score">Score: <span id="score_value">0</span></p>
+         <button class="buttons" id="new_game">New Game</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p class="score">Best Score: <span id="best_score_value">0</span></p>
+            <button class="buttons" id="autoplay">Dummy AI</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <article align="center">
+                <canvas align="center" style="position: center" id="gameArea" class="wrap" width="300" height="300" tabindex="1"></canvas>
+            </article>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <label id="speed_label">10</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="speed_setter" type="range" orient="vertical" value="10" min="5" max="100" />
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table align="center" >
+                <tr>
+                    <td></td>
+                    <td><div class="mobile_controls" id="mobile_up">&#8593;</div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><div class="mobile_controls" id="mobile_left">&#8592;</div></td>
+                    <td><div class="mobile_controls" id="mobile_down">&#8595;</div></td>
+                    <td><div class="mobile_controls" id="mobile_right">&#8594;</div></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+    <!--<script src="snake.js"></script>-->
+</body>
+</html> 
