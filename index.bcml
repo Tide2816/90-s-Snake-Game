@@ -30,6 +30,7 @@
   </style>
 </head>
 <body>
+<bizapp-root>
 <canvas width="400" height="400" id="game"></canvas>
 <script>
 var canvas = document.getElementById('game');
@@ -194,5 +195,6 @@ document.addEventListener('keydown', function(e) {
 
 requestAnimationFrame(loop);
 </script>
+</bizapp-root>
 </body>
 </html>
