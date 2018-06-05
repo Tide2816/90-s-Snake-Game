@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="HandheldFriendly" content="true">
-  <title>90's Snake Game</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdn.bizstore.io/bizapp-0.0.1.min.js"></script>
-  <style>
-    button { width: 100%; margin: 0.3rem 0; border: 0; background-color: #42A5F5; color: white; font-size: 1rem; padding: 0.6rem 1.3rem; border-radius: 8px; transition: all 0.2s; cursor: pointer; outline: 0; }
-    button:hover { background-color: #1565C0; }
-  </style>
-  <style>
-  html, body {
+<title>Page Title</title>
+<style>
+body {
+    background-color: black;
+    text-align: center;
+    color: white;
+    font-family: Poppin-SemiBold, Robotto, sans-serif;
+}
+  }
+
+</style>
+</head>
+<body>
+
+<h1>90's Snake Game</h1>
+<p>Slide up, down, left and right to move </p>
+
+<style>
+html, body {
     height: 100%;
     margin: 0;
   }
@@ -27,13 +34,10 @@
   canvas {
     border: 1px solid white;
   }
-  </style>
-</head>
-<body>
-<bizapp-root>
-<h1>How to Play</h1>
-<p>Just slide up, down, left and right to move</p>
-<canvas width="400" height="400" id="game"></canvas>
+ </style>
+
+<canvas width="200" height="200" id="game"></canvas>
+
 <script>
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
@@ -197,6 +201,8 @@ document.addEventListener('keydown', function(e) {
 
 requestAnimationFrame(loop);
 </script>
-</bizapp-root>
+
+
 </body>
 </html>
+
